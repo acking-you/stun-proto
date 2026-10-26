@@ -55,16 +55,10 @@ fn parse_response(response: Message) -> Result<(), std::io::Error> {
         Ok(())
     } else if response.has_class(MessageClass::Error) {
         println!("got error response {:?}", response);
-        Err(std::io::Error::new(
-            std::io::ErrorKind::Other,
-            "Error response",
-        ))
+        Err(std::io::Error::other("Error response"))
     } else {
         println!("got unknown response {:?}", response);
-        Err(std::io::Error::new(
-            std::io::ErrorKind::Other,
-            "Unknown response",
-        ))
+        Err(std::io::Error::other("Unknown response"))
     }
 }
 
